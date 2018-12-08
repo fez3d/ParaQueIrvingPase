@@ -45,9 +45,21 @@ and open the template in the editor.
                     $baseDatos->EjecutarQuery($query);
                 }
             }
+            
+            function agregarBitacora(){
+                $baseDatos = new BaseDeDatos();
+                $usuario = $_SESSION['usuario'];
+                $estacion = $_POST['txt_holder'];
+                $descripcion = 'Contrato el radio '.$estacion;
+                $query = "INSERT INTO `bitacora` (`clv_usuario`, `descripcion`) VALUES ('".$usuario."','".$descripcion."');";
+                $baseDatos->EjecutarQuery($query);    
+            }
+            
             if(isset($_POST['submit'])){ 
                 echo "Agregar radio";
+                agregarBitacora();
                 agregarRadio();
+                header("Location: VistaVerContrataciones.php");
             }  
         ?>
 

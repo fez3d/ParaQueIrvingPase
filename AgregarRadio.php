@@ -30,9 +30,19 @@ and open the template in the editor.
 
             }
 
+            function agregarBitacora(){
+                $baseDatos = new BaseDeDatos();
+                $usuario = $_SESSION['usuario'];
+                $id = $_POST['estacion'];
+                $descripcion = 'Agrego un anuncio de radio en '.$id;
+                $query = "INSERT INTO `bitacora` (`clv_usuario`, `descripcion`) VALUES ('".$usuario."','".$descripcion."');";
+                $baseDatos->EjecutarQuery($query);    
+            }
+            
             if(isset($_POST['submit'])){
                 //validarSesionExpirada();
                 agregarCartelera();
+                agregarBitacora();
                 header("Location: VistaAdministrador.php");
             }  
             

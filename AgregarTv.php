@@ -29,8 +29,18 @@ and open the template in the editor.
                 $baseDatos->EjecutarQuery($query);
             }
 
+            function agregarBitacora(){
+                $baseDatos = new BaseDeDatos();
+                $usuario = $_SESSION['usuario'];
+                $canal = $_POST['canal'];
+                $descripcion = 'Agrego al canal de tv '.$canal;
+                $query = "INSERT INTO `bitacora` (`clv_usuario`, `descripcion`) VALUES ('".$usuario."','".$descripcion."');";
+                $baseDatos->EjecutarQuery($query);    
+            }
+            
             if(isset($_POST['submit'])){ 
                 agregarTv();
+                agregarBitacora();
                 header("Location: VistaAdministrador.php");
             }  
             

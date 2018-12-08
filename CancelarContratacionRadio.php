@@ -25,10 +25,19 @@
                         ."';";
                 $baseDatos->EjecutarQuery($query);
             }
+            
+            function agregarBitacora(){
+                $baseDatos = new BaseDeDatos();
+                $usuario = $_SESSION['usuario'];
+                $clave = $_POST['clave'];
+                $descripcion = 'Eliminó la contratación de radio '.$clave;
+                $query = "INSERT INTO `bitacora` (`clv_usuario`, `descripcion`) VALUES ('".$usuario."','".$descripcion."');";
+                $baseDatos->EjecutarQuery($query);    
+            }
 
             if(isset($_POST['submit'])){ 
-
                 eliminar();
+                agregarBitacora();
                 header("Location: VistaVerContrataciones.php");
             }
         ?>

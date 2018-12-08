@@ -28,6 +28,15 @@
                 $baseDatos->EjecutarQuery($query);
                 header("Location: IniciarSesion.php");
             }
+            
+            function agregarBitacora(){
+                $baseDatos = new BaseDeDatos();
+                $usuario = $_POST['usuario'];
+                $tipoUsuario = $_POST['txt_holder'];
+                $descripcion = 'Se creó el usuario tipo '.$tipoUsuario;
+                $query = "INSERT INTO `bitacora` (`clv_usuario`, `descripcion`) VALUES ('".$usuario."','".$descripcion."');";
+                $baseDatos->EjecutarQuery($query); 
+            }
 
             if(isset($_POST['submit'])){ 
 
