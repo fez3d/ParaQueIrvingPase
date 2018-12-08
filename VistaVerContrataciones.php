@@ -71,6 +71,9 @@ include("BaseDeDatos.php");
                                     echo '<li class="menu__item">';
                                     echo '<a href="VistaAdministrador.php" class="menu__link"> Ver Anuncios</a>';
                                     echo '</li>';
+                                    echo '<li class="menu__item">';
+                                    echo '<a href="Bitacora.php" class="menu__link "> Bitacora</a>';
+                                    echo '</li>';
                                 } else if ($_SESSION['tipo_usuario'] == "cliente"){
                                     echo '<li class="menu__item">';
                                     echo '<a href="VistaContratar.php" class="menu__link"> Contratar</a>';
