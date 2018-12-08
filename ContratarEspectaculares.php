@@ -41,7 +41,6 @@ and open the template in the editor.
                 
                 $query = "INSERT INTO `carteleracontratado`(`clv_cartel`, `clv_usuario`, `fecha_inicio`, `fecha_fin`) VALUES "
                         . "('".$cartel."','".$usuario."',STR_TO_DATE('".$fechaInicio."', '%m/%d/%Y'),STR_TO_DATE('".$fechaTermino."', '%m/%d/%Y'))" ;
-                echo $query;
                 if(is_numeric($diaInicio) && is_numeric($diaTermino)){
                     $baseDatos->EjecutarQuery($query);
                 }

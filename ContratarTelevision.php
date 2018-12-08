@@ -40,13 +40,12 @@ and open the template in the editor.
                 
                 $query = "INSERT INTO `contrataciontv`(`clv_usuario`, `fecha_inicio`, `fecha_fin`, `canal`) VALUES "
                         . "('".$usuario."',STR_TO_DATE('".$fechaInicio."', '%m/%d/%Y'),STR_TO_DATE('".$fechaTermino."', '%m/%d/%Y'),'".$canal."')" ;
-                echo $query;
+
                 if(is_numeric($diaInicio) && is_numeric($diaTermino)){
                     $baseDatos->EjecutarQuery($query);
                 }
             }
             if(isset($_POST['submit'])){ 
-                echo "Agregar radio";
                 agregarRadio();
             }  
         ?>

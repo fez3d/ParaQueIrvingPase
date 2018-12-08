@@ -29,6 +29,7 @@
             if(isset($_POST['submit'])){ 
 
                 eliminar();
+                header("Location: VistaVerContrataciones.php");
             }
         ?>
        <header class="main-header">   

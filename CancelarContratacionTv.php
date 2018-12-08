@@ -18,17 +18,18 @@
                 $baseDatos = new BaseDeDatos();
                 $clave = $_POST['clave'];
                 $usuario = $_SESSION['usuario'];
-                $query = "DELETE FROM contrataciontv WHERE id ="
+                $query = "DELETE FROM contrataciontv WHERE canal ="
                         .$clave
-                        ." AND clv_usuario ="
+                        ." AND clv_usuario ='"
                         .$usuario
-                        .";";
+                        ."';";
                 $baseDatos->EjecutarQuery($query);
             }
 
             if(isset($_POST['submit'])){ 
 
                 eliminar();
+                header("Location: VistaVerContrataciones.php");
             }
         ?>
          <header class="main-header">   
