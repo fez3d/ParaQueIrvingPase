@@ -1,0 +1,118 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 18/11/2018, 05:12:30 PM
+    Author     : Rudynsky
+*/
+
+body{
+	background-color:#033649;
+	margin: 0;
+        padding: 0;
+        font-family: 'Work Sans', sans-serif;
+        
+}
+
+.div1 button{
+     background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.div2 button{
+     background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.div3 button{
+     background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+
+h2,h3{
+    text-align: center;
+    font-family: bold;
+    color: white
+}
+
+
+label{
+    color: white;
+    font-size: 30px;
+
+    
+}
+
+
+
+
+
+#contenedor-principal{
+	margin:auto;
+	width: 100%;
+        heigt:100%;
+}
+
+table{
+	background-color: white;
+	text-align: left;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td{
+	padding: 30px;
+}
+
+thead{
+	background-color: #556B2F;
+	border-bottom: solid 5px #0F362D;
+	color: #FFFAFA;
+}
+
+tr:nth-child(even){
+	background-color: #ddd;
+}
+
+tr:hover td{
+	background-color: #369681;
+	color: white;
+}
+
+
+.div1 ,.div2,.div3{
+  
+  margin-top : 100px;
+  margin-left: 0px; 
+  margin-right: 0px;
+  height: auto;
+  overflow-x:auto;
+}

@@ -1,0 +1,120 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26/11/2018, 12:24:03 AM
+    Author     : Moises
+*/
+li{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+img{
+	display: block;
+	width: 100%;
+	max-width: 100%;
+}
+ul{
+	padding: 0;
+	margin: 0;
+	border: 0;
+
+}
+.container{
+	width: 100%;
+	margin: auto;
+}
+.contenedorServicios{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.contenedor{
+	width: 100%;
+	padding: 0;
+	margin: auto;
+	border: 0;
+	background: #ABEBC6;
+
+	/*Flex*/
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	text-align: left;
+}
+.contenedor img{
+	width: 100%;
+	height: 350px;
+	object-fit: cover;
+}
+.contenedor video{
+	width: 100%;
+	height: 350px;
+}
+
+.Elemento{
+	width: 50%;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+.Elemento img{
+	object-fit: cover;
+
+}
+
+.seccionInicial .container{
+	background: grey;
+	color: white;
+	padding: 10px;
+	text-align: center;
+}
+
+
+.contenedor .Elemento:nth-child(2){
+	padding: 10px;
+}
+.contenedorServicios .contenedor:nth-child(2){
+	background: white;
+}
+.contenedorServicios .contenedor:nth-child(4) {
+	background: white;
+}
+
+
+
+.lista{
+
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: none;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: space-between;
+}
+
+@media screen and (max-width: 480px){
+	.contenedor{
+		flex-direction: row;
+		flex-wrap: wrap;
+
+	}
+	.contenedorServicios{
+		position: absolute;
+
+	}
+	.elemento{
+		width: 50%;
+	}
+
+}
+

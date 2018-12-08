@@ -1,0 +1,195 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19/11/2018, 03:07:50 PM
+    Author     : Rudynsky
+*/
+
+header{
+	width:100%;
+	
+	background: #40C0CB;
+        
+} 
+
+header::after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.wrapper {
+	width:80%;
+	line-height: 80px;
+	margin:0 auto;
+
+}
+
+.logo{
+    float:left;
+    padding: 10px,0;
+}
+
+header img{
+   width: 10%; 
+   height: 10%;
+   margin_left: 0;
+    
+}
+nav {
+  
+  float:right;
+  background: #40C0CB;
+  
+  
+ 
+}
+nav ul {
+  list-style: none;
+    margin: 0;
+    padding:0;
+ 
+}
+nav ul li {
+  display: inline-block;
+}
+nav ul li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #444;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0 10px;
+}
+nav ul li a,
+nav ul li a:after,
+nav ul li a:before {
+  transition: all .5s;
+}
+nav ul li a:hover {
+  color: #555;
+}
+
+
+/*nav{
+float:right;
+
+}
+
+
+nav ul{
+margin 0;
+padding:0;
+list-style:none;
+
+}
+
+nav li{
+display: inline-block;
+margin-left: 70px;
+padding-top:30px;
+
+}
+
+nav ul li a{
+color:#444;
+text-decoration: none;
+text-transform: uppercase;
+font-size:14px;
+}*/
+
+/*nav ul li a:hover{
+    color:#fff;
+}*/
+
+nav ul li a:after,
+nav ul li a:before {
+  transition: all .5s;
+}
+nav ul li a:hover {
+  color: #555;
+}
+
+
+/* stroke */
+
+
+nav.shift ul li a {
+  position:relative;
+  z-index: 1;
+}
+nav.shift ul li a:hover {
+  color: #91640F;
+}
+nav.shift ul li a:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 1px;
+  content: '.';
+  color: transparent;
+  background: #F1C40F;
+  visibility: none;
+  opacity: 0;
+  z-index: -1;
+}
+nav.shift ul li a:hover:after {
+  opacity: 1;
+  visibility: visible;
+  height: 100%;
+}
+
+
+/* Keyframes */
+@-webkit-keyframes fill {
+  0% {
+    width: 0%;
+    height: 1px;
+  }
+  50% {
+    width: 100%;
+    height: 1px;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    background: #333;
+  }
+}
+
+/* Keyframes */
+@-webkit-keyframes circle {
+  0% {
+    width: 1px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: 1px;
+    z-index: -1;
+    background: #eee;
+    border-radius: 100%;
+  }
+  100% {
+    background: #aaa;
+    height: 5000%;
+    width: 5000%;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 0;
+  }
+}

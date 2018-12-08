@@ -1,0 +1,114 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12/09/2018, 09:33:35 PM
+    Author     : dmc-4
+*/
+
+h1 {
+    text-align:center;
+}
+
+body {
+    max-width: 1400px;
+    margin: auto;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+form {
+    text-align: center;
+}
+
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+header{
+	width:100%;
+	overflow: hidden;      
+	background: #252932;
+	margin-bottom: 20px;
+} 
+
+.wrapper {
+	width:90%;
+	max-width:1000px;
+	margin:auto;
+	overflow:hidden;
+}
+
+header .logo{
+	color:#f2f2f2;
+	font-size: 50px;
+	line-height:20px;
+	float:left;
+	padding-right: 20px;
+}
+
+header nav{
+
+	 float:right;
+	 line-height: 50px;
+}
+
+header nav a{
+
+	display:inline-block;
+	color: #fff;
+	text-decoration:none ;
+	padding:10px 20px;
+	line-height:normal;;
+	font-size: 20px;
+	font-weight: bold;
+	-transition: 500ms ease;
+}
+
+header nav a:hover{
+
+	background: #182C61;
+	border-radius:50px;
+
+}
+
+footer{
+
+
+	width: 100%;
+	line-height:5px;
+	background:#252932;
+	position: fixed;
+	bottom: 0;
+
+}
+
+p.Foot{
+
+	color: #f2f2f2;
+	font-size: 20px;
+}
+
+
+@media screen and (max-width: 700px) {
+    .column {
+        width: 100%;
+    }
+}
+
+
+    
