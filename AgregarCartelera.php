@@ -18,11 +18,12 @@
                 $direccion = $_POST['direccion'];
                 $titulo = $_POST['titulo'];
                 $precio = $_POST['precio'];
-                $query = "INSERT INTO carteleras VALUES ('".$id."','".$direccion."','".$titulo."','".$precio."');" ;
+                $query = "INSERT INTO carteleras VALUES (".$id.",'".$direccion."','".$titulo."',".$precio.");" ;
                 
-                if(is_int($id) && is_int($precio)){
-                    $baseDatos->EjecutarQuery($query);
-                }
+                
+                $baseDatos->EjecutarQuery($query);
+                header("Location: VistaAdministrador.php");
+                
             }
             
             if(isset($_POST['submit'])){ 
@@ -32,22 +33,7 @@
             
         ?>
         <header>
-       
-                <?php
-                session_start();
-                if($_SESSION['tipo_usuario'] == "administrador"){
-                    echo '<a href="VistaAdministrador.php"> Ver Anuncios</a>';
-                } else if ($_SESSION['tipo_usuario'] == "cliente"){
-                    echo '<a href="VistaContratar.php"> Contratar</a>';
-                    echo '<a href="VistaVerContrataciones.php"> Ver Mis Contrataciones</a>';
-                }
 
-                if($_SESSION['inicio'] == null || $_SESSION['inicio'] == false){
-                    echo '<a href="IniciarSesion.php"> Iniciar Sesion</a>';
-                } else{
-                    echo '<a href="CerrarSesion.php"> Cerrar Sesion</a>';
-                }
-                ?>
 <div class="container container--flex">
                         <div class ="logo-container column column--50">
                             <h1 class="logo">Logo</h1>
@@ -82,20 +68,30 @@
                                     <a href="Contacto.php" class="menu__link "> Contacto</a>
                             </li>
                                 <?php
-                                    session_start();
-                                    if($_SESSION['tipo_usuario'] == "administrador"){
-                                        echo '<a href="VistaAdministrador.php"> Ver Anuncios</a>';
-                                    } else if ($_SESSION['tipo_usuario'] == "cliente"){
-                                        echo '<a href="VistaContratar.php"> Contratar</a>';
-                                        echo '<a href="VistaVerContrataciones.php"> Ver Mis Contrataciones</a>';
-                                    }
+                        session_start();
+                                if($_SESSION['tipo_usuario'] == "administrador"){
+                                    echo '<li class="menu__item">';
+                                    echo '<a href="VistaAdministrador.php" class="menu__link "> Ver Anuncios</a>';
+                                    echo '</li>';
+                                } else if ($_SESSION['tipo_usuario'] == "cliente"){
+                                    echo '<li class="menu__item">';
+                                    echo '<a href="VistaContratar.php" class="menu__link "> Contratar</a>';
+                                    echo '</li>';
+                                    echo '<li class="menu__item">';
+                                    echo '<a href="VistaVerContrataciones.php" class="menu__link "> Ver Mis Contrataciones</a>';
+                                    echo '</li>';
+                                }
 
-                                    if($_SESSION['inicio'] == null || $_SESSION['inicio'] == false){
-                                        echo '<a href="IniciarSesion.php"> Iniciar Sesion</a>';
-                                    } else{
-                                        echo '<a href="CerrarSesion.php"> Cerrar Sesion</a>';
-                                    }
-                                    ?>
+                                if($_SESSION['inicio'] == null || $_SESSION['inicio'] == false){
+                                    echo '<li class="menu__item">';
+                                    echo '<a href="IniciarSesion.php" class="menu__link "> Iniciar Sesion</a>';
+                                    echo '</li>';
+                                } else{
+                                    echo '<li class="menu__item">';
+                                    echo '<a href="CerrarSesion.php" class="menu__link "> Cerrar Sesion</a>';
+                                    echo '</li>';
+                                }
+                            ?>
 
             </nav>
         </div>

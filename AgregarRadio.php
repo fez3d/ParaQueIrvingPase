@@ -22,20 +22,18 @@ and open the template in the editor.
         //include("ValidacionSesionExpirada.php");
             function agregarCartelera(){
                 $baseDatos = new BaseDeDatos();
-                $id = $_POST['id'];
-                $direccion = $_POST['direccion'];
+                $id = $_POST['estacion'];
                 $titulo = $_POST['titulo'];
                 $precio = $_POST['precio'];
-                $query = "INSERT INTO carteleras VALUES ('".$id."','".$direccion."','".$titulo."','".$precio."');" ;
-                
-                if(is_int($id) && is_int($precio)){
-                    $baseDatos->EjecutarQuery($query);
-                }
+                $query = "INSERT INTO radio VALUES (".$id.",'".$titulo."',".$precio.");" ;
+                $baseDatos->EjecutarQuery($query);
+
             }
 
             if(isset($_POST['submit'])){
                 //validarSesionExpirada();
                 agregarCartelera();
+                header("Location: VistaAdministrador.php");
             }  
             
         ?>
@@ -54,21 +52,7 @@ and open the template in the editor.
                             </p>    
                         </div>    
                     </div>
-                <?php
-//                session_start();
-//                if($_SESSION['tipo_usuario'] == "administrador"){
-//                    echo '<a href="VistaAdministrador.php"> Ver Anuncios</a>';
-//                } else if ($_SESSION['tipo_usuario'] == "cliente"){
-//                    echo '<a href="VistaContratar.php"> Contratar</a>';
-//                    echo '<a href="VistaVerContrataciones.php"> Ver Mis Contrataciones</a>';
-//                }
-//
-//                if($_SESSION['inicio'] == null || $_SESSION['inicio'] == false){
-//                    echo '<a href="IniciarSesion.php"> Iniciar Sesion</a>';
-//                } else{
-//                    echo '<a href="CerrarSesion.php"> Cerrar Sesion</a>';
-//                }
-                ?>
+                
             </header>
            
        <nav class="main-nav">
@@ -87,6 +71,31 @@ and open the template in the editor.
                 <li class="menu__item">
                     <a href="Contacto.php" class="menu__link "> Contacto</a>
                 </li>
+                <?php
+                                session_start();
+                                if($_SESSION['tipo_usuario'] == "administrador"){
+                                    echo '<li class="menu__item">';
+                                    echo '<a href="VistaAdministrador.php" class="menu__link "> Ver Anuncios</a>';
+                                    echo '</li>';
+                                } else if ($_SESSION['tipo_usuario'] == "cliente"){
+                                    echo '<li class="menu__item">';
+                                    echo '<a href="VistaContratar.php" class="menu__link "> Contratar</a>';
+                                    echo '</li>';
+                                    echo '<li class="menu__item">';
+                                    echo '<a href="VistaVerContrataciones.php" class="menu__link "> Ver Mis Contrataciones</a>';
+                                    echo '</li>';
+                                }
+
+                                if($_SESSION['inicio'] == null || $_SESSION['inicio'] == false){
+                                    echo '<li class="menu__item">';
+                                    echo '<a href="IniciarSesion.php" class="menu__link "> Iniciar Sesion</a>';
+                                    echo '</li>';
+                                } else{
+                                    echo '<li class="menu__item">';
+                                    echo '<a href="CerrarSesion.php" class="menu__link "> Cerrar Sesion</a>';
+                                    echo '</li>';
+                                }
+                            ?>
 
             </ul>
             </div>

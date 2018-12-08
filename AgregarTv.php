@@ -25,18 +25,13 @@ and open the template in the editor.
                 $canal = $_POST['canal'];
                 $titulo = $_POST['titulo'];
                 $precio = $_POST['precio'];
-                $query = "INSERT INTO `television` VALUES ('".floor($canal)."','".$titulo."','".floor($precio)."');" ;
-                
-                if(is_numeric($precio) && is_numeric($canal)){
-                    echo "Acceso permitido";
-                    $baseDatos->EjecutarQuery($query);
-                }else{
-                    echo "Acceso denegado";
-                }
+                $query = "INSERT INTO television VALUES (".$canal.",'".$titulo."',".$precio.");" ;                
+                $baseDatos->EjecutarQuery($query);
             }
 
             if(isset($_POST['submit'])){ 
                 agregarTv();
+                header("Location: VistaAdministrador.php");
             }  
             
         ?>
@@ -123,7 +118,7 @@ and open the template in the editor.
                     <input type="text"  name="precio" placeholder="Ingresa el precio">
                     <br><br>
                         
-                    <input type="submit"  value="Registrar Datos" onclick="validateForm()">                       
+                    <input type="submit" name="submit" value="Registrar Datos" onclick="validateForm()">                       
                 </form>
             </div>
         </div>

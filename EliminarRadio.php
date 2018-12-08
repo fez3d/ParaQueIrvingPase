@@ -23,6 +23,7 @@
             if(isset($_POST['submit'])){ 
 
                 eliminar();
+                header("Location: VistaAdministrador.php");
             }
         ?>
         <header class="main-header">   
