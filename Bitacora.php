@@ -100,7 +100,7 @@ and open the template in the editor.
                     <?php
                         $baseDatos = new BaseDeDatos();
                         $usuario = $_SESSION['usuario'];
-                        $sql = "Select * from bitacor;";
+                        $sql = "Select * from bitacora;";
                         $result = $baseDatos->ObtenerResultado($sql);
                         while($rows = mysqli_fetch_assoc($result)){
                     ?>     

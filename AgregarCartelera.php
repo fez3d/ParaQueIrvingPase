@@ -10,6 +10,7 @@
     </head>
     <body>
         <?php
+        session_start();
         include("BaseDeDatos.php"); 
         //include("ValidacionSesionExpirada.php");
             function agregarCartelera(){
@@ -18,17 +19,23 @@
                 $direccion = $_POST['direccion'];
                 $titulo = $_POST['titulo'];
                 $precio = $_POST['precio'];
-                $query = "INSERT INTO carteleras VALUES (".$id.",'".$direccion."','".$titulo."',".$precio.");" ;
-                
-                
-                $baseDatos->EjecutarQuery($query);
-                header("Location: VistaAdministrador.php");
-                
+                $query = "INSERT INTO carteleras VALUES (".$id.",'".$direccion."','".$titulo."',".$precio.");" ;           
+                $baseDatos->EjecutarQuery($query);               
+            }
+            
+            function agregarBitacora(){
+                $baseDatos = new BaseDeDatos();
+                $usuario = $_SESSION['usuario'];
+                $descripcion = 'Agrego una Cartelera';
+                $query = "INSERT INTO `bitacora` (`clv_usuario`, `descripcion`) VALUES ('".$usuario."','".$descripcion."');";
+                $baseDatos->EjecutarQuery($query);    
             }
             
             if(isset($_POST['submit'])){ 
 //                validarSesionExpirada();
                 agregarCartelera();
+                agregarBitacora();
+                header("Location: VistaAdministrador.php");
             }  
             
         ?>
@@ -68,7 +75,7 @@
                                     <a href="Contacto.php" class="menu__link "> Contacto</a>
                             </li>
                                 <?php
-                        session_start();
+                        
                                 if($_SESSION['tipo_usuario'] == "administrador"){
                                     echo '<li class="menu__item">';
                                     echo '<a href="VistaAdministrador.php" class="menu__link "> Ver Anuncios</a>';

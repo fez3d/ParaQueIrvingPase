@@ -45,8 +45,20 @@ and open the template in the editor.
                     $baseDatos->EjecutarQuery($query);
                 }
             }
+            
+            function agregarBitacora(){
+                $baseDatos = new BaseDeDatos();
+                $usuario = $_SESSION['usuario'];
+                $cartel = $_POST['txt_holder'];
+                $descripcion = 'Contrato las cartelera '.$cartel;
+                $query = "INSERT INTO `bitacora` (`clv_usuario`, `descripcion`) VALUES ('".$usuario."','".$descripcion."');";
+                $baseDatos->EjecutarQuery($query);    
+            }
+            
             if(isset($_POST['submit'])){ 
                 agregarCartelera();
+                agregarBitacora();
+                header("Location: VistaVerContrataciones.php");
             }  
         
         ?>
