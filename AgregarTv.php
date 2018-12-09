@@ -16,11 +16,66 @@ and open the template in the editor.
         <link rel="stylesheet" href="HeaderStyleSheet.css">
     <link rel="stylesheet" href="ServiciosStyleSheet.css">
     <link rel="stylesheet" href="SliderStyleSheet.css">
+    <script>
+            function isNotEmptyLocalStorage(){
+                var id = localStorage.getItem("agtCanal");
+                if(id == "" || id == null){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            
+            function localStorageCarga(){
+                if(isNotEmptyLocalStorage()){
+                    alert("Se recuperó información de la última sesión.");
+                    
+                    var id = localStorage.getItem("agtCanal");
+                    var titulo = localStorage.getItem("agtTitulo");
+                    var precio = localStorage.getItem("agtPrecio");
+                    
+                    document.getElementsByName("canal")[0].value = id;
+                    document.getElementsByName("titulo")[0].value = titulo;
+                    document.getElementsByName("precio")[0].value = precio;
+                    
+                    localStorage.removeItem("agtCanal");
+                    localStorage.removeItem("agtTitulo");
+                    localStorage.removeItem("agtPrecio");
+                }
+            }
+            
+            function localStorageSubmit(){
+                if(isNotEmptyLocalStorage()){
+                    alert("LocalStorage no vacío");
+                }else{
+                    if(!navigator.onLine){
+                       var id =  document.getElementsByName("canal")[0].value;
+                       var titulo =  document.getElementsByName("titulo")[0].value;
+                       var precio =  document.getElementsByName("precio")[0].value;
+                       
+                       localStorage.setItem("agtCanal", id);
+                       localStorage.setItem("agtTitulo", titulo);
+                       localStorage.setItem("agtPrecio", precio);
+                       
+                       alert("Se guardó id: " + id);
+                    }else{
+                        alert("No se guardó nada.");
+                    }
+                }
+            }
+            
+            function submitF(){
+                localStorageSubmit();
+                validateForm();
+                
+            }
+        </script>
     </head>
-    <body>
+    <body onload="localStorageCarga()">
          <?php
         include("BaseDeDatos.php"); 
-            function agregarTv(){
+        session_start();    
+        function agregarTv(){
                 $baseDatos = new BaseDeDatos();
                 $canal = $_POST['canal'];
                 $titulo = $_POST['titulo'];
@@ -85,7 +140,7 @@ and open the template in the editor.
                     <a href="Contacto.php" class="menu__link "> Contacto</a>
                 </li>
                 <?php
-                    session_start();
+                    
                     if($_SESSION['tipo_usuario'] == "administrador"){
                         echo '<li class="menu__item">';
                         echo '<a href="VistaAdministrador.php" class="menu__link "> Ver Anuncios</a>';
@@ -139,7 +194,7 @@ and open the template in the editor.
                     <input type="text"  name="precio" placeholder="Ingresa el precio">
                     <br><br>
                         
-                    <input type="submit" name="submit" value="Registrar Datos" onclick="validateForm()">                       
+                    <input type="submit" name="submit" value="Registrar Datos" onclick="submitF()">                       
                 </form>
             </div>
         </div>

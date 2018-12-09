@@ -15,8 +15,58 @@ and open the template in the editor.
     <link rel="stylesheet" href="SliderStyleSheet.css">
         
         <script src="contact-form-validation-Radio.js"></script>
+        
+        <script>
+            function isNotEmptyLocalStorage(){
+                var id = localStorage.getItem("agrEstacion");
+                if(id == "" || id == null){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            
+            function localStorageCarga(){
+                if(isNotEmptyLocalStorage()){
+                    alert("Se recuperó información de la última sesión.");
+                    
+                    var id = localStorage.getItem("agrEstacion");
+                    var titulo = localStorage.getItem("agrTitulo");
+                    var precio = localStorage.getItem("agrPrecio");
+                    
+                    document.getElementsByName("estacion")[0].value = id;
+                    document.getElementsByName("titulo")[0].value = titulo;
+                    document.getElementsByName("precio")[0].value = precio;
+                    
+                    localStorage.removeItem("agrEstacion");
+                    localStorage.removeItem("agrTitulo");
+                    localStorage.removeItem("agrPrecio");
+                }
+            }
+            
+            function localStorageSubmit(){
+                if(isNotEmptyLocalStorage()){
+                }else{
+                    if(!navigator.onLine){
+                       var id =  document.getElementsByName("estacion")[0].value;
+                       var titulo =  document.getElementsByName("titulo")[0].value;
+                       var precio =  document.getElementsByName("precio")[0].value;
+                       
+                       localStorage.setItem("agrEstacion", id);
+                       localStorage.setItem("agrTitulo", titulo);
+                       localStorage.setItem("agrPrecio", precio);
+                    }
+                }
+            }
+            
+            function submitF(){
+                localStorageSubmit();
+                validateForm();
+                
+            }
+        </script>
     </head>
-    <body>
+    <body onload="localStorageCarga()">
         <?php
         include("BaseDeDatos.php"); 
         //include("ValidacionSesionExpirada.php");
@@ -136,7 +186,7 @@ and open the template in the editor.
                     <input type="text"  name="precio" placeholder="Ingresa el Precio">
                     <br><br>
                         
-                    <input type="submit" name="submit" value="Registrar Datos" onclick="validateForm()">                       
+                    <input type="submit" name="submit" value="Registrar Datos" onclick="submitF()">                       
                 </form>
             
         </div>

@@ -12,7 +12,8 @@
     <body>
         <?php
         // put your code here
-        include("BaseDeDatos.php"); 
+        include("BaseDeDatos.php");
+        session_start();
             function eliminar(){
                 $baseDatos = new BaseDeDatos();
                 $clave = $_POST['clave'];
@@ -76,7 +77,6 @@
                     <a href="Contacto.php" class="menu__link "> Contacto</a>
                 </li>
                 <?php
-                    session_start();
                     if($_SESSION['tipo_usuario'] == "administrador"){
                         echo '<li class="menu__item">';
                         echo '<a href="VistaAdministrador.php" class="menu__link "> Ver Anuncios</a>';

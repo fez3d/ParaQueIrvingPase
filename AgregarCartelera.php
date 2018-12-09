@@ -24,58 +24,55 @@
             
             function localStorageCarga(){
                 if(isNotEmptyLocalStorage()){
+                    alert("Se recuperó información de la última sesión.");
+                    
                     var id = localStorage.getItem("agcID");
                     var direccion = localStorage.getItem("agcDireccion");
                     var titulo = localStorage.getItem("agcTitulo");
                     var precio = localStorage.getItem("agcPrecio");
                     
-                    document.getElementsByName("id").value = id;
-                    document.getElementsByName("direccion").value = direccion;
-                    document.getElementsByName("titulo").value = titulo;
-                    document.getElementsByName("precio").value = precio;
+                    document.getElementsByName("id")[0].value = id;
+                    document.getElementsByName("direccion")[0].value = direccion;
+                    document.getElementsByName("titulo")[0].value = titulo;
+                    document.getElementsByName("precio")[0].value = precio;
                     
                     localStorage.removeItem("agcID");
                     localStorage.removeItem("agcDireccion");
                     localStorage.removeItem("agcTitulo");
                     localStorage.removeItem("agcPrecio");
-                    alert("penneeeeeee");
-                    
                 }else{
 
                 }
             }
             
             function localStorageSubmit(){
-                alert("penneeeeeeeEstaEntrando");
                 if(isNotEmptyLocalStorage()){                   
-                    alert("penneeeeeeeNovacio");
+                    alert("No vacío.");
                 }else{
                     if(!navigator.onLine){
-                       var id =  document.getElementsByName("id");
-                       var direccion =  document.getElementsByName("direccion");
-                       var titulo =  document.getElementsByName("titulo");
-                       var precio =  document.getElementsByName("precio");
+                       var id =  document.getElementsByName("id")[0].value;
+                       var direccion =  document.getElementsByName("direccion")[0].value;
+                       var titulo =  document.getElementsByName("titulo")[0].value;
+                       var precio =  document.getElementsByName("precio")[0].value;
                        
                        localStorage.setItem("agcID", id);
                        localStorage.setItem("agcDireccion", direccion);
                        localStorage.setItem("agcTitulo", titulo);
-                       localStorage.setItem("agcPrecio", precio);
-                       alert("penneeeeeee222");
+                       localStorage.setItem("agcPrecio", precio);                      
                     } else {
-                        alert("penneeeeeeeNoseque");
+                        alert("No se guardó nada.");
                     }
                 }
             }
             
-            function submit(){
-                window.alert("submitemeesta");
+            function submitF(){
                 localStorageSubmit();
                 validateForm();
                 
             }
         </script>
     </head>
-    <body>
+    <body onload="localStorageCarga()">
         <?php
         session_start();
         include("BaseDeDatos.php"); 
@@ -206,7 +203,7 @@
                     <input type="text"  name="precio" placeholder="ingrese el precio">
                     <br><br>
                      
-                    <input type="submit" name="submit" value="Registrar Datos" onclick="submit()">               
+                    <input type="submit" name="submit" value="Registrar Datos" onclick="submitF()">               
                 </form>
             </div>
         
