@@ -27,6 +27,14 @@
                 $query = "INSERT INTO usuario VALUES ('".$usuario."','".$contrasena."','".$correo."','".$tipoUsuario."');";
                 $baseDatos->EjecutarQuery($query);
                 header("Location: IniciarSesion.php");
+                
+                if($tipoUsuario == "cliente"){
+                    echo("permiso cliente");
+                    agregarPermisoCliente();
+                }elseif ($tipoUsuario == "adimnistrador") {
+                    echo("permiso admin");
+                    agregarPermisoAdmin();
+                }
             }
             
             function agregarBitacora(){
@@ -36,6 +44,29 @@
                 $descripcion = 'Se creó el usuario tipo '.$tipoUsuario;
                 $query = "INSERT INTO `bitacora` (`clv_usuario`, `descripcion`) VALUES ('".$usuario."','".$descripcion."');";
                 $baseDatos->EjecutarQuery($query); 
+            }
+            
+            function agregarPermisoCliente(){
+                $baseDatos = new BaseDeDatos();
+                $usuario = $_POST['usuario'];
+                $baseDatos->EjecutarQuery("INSERT INTO `permiso_usuario VALUES (".$usuario.",201);");
+                $baseDatos->EjecutarQuery("INSERT INTO `permiso_usuario VALUES (".$usuario.",202);");
+                $baseDatos->EjecutarQuery("INSERT INTO `permiso_usuario VALUES (".$usuario.",203);");
+                $baseDatos->EjecutarQuery("INSERT INTO `permiso_usuario VALUES (".$usuario.",301);");
+                $baseDatos->EjecutarQuery("INSERT INTO `permiso_usuario VALUES (".$usuario.",302);");
+                $baseDatos->EjecutarQuery("INSERT INTO `permiso_usuario VALUES (".$usuario.",303);");
+            }
+            
+            function agregarPermisoAdmin(){
+                $baseDatos = new BaseDeDatos();
+                $usuario = $_POST['usuario'];
+                $baseDatos->EjecutarQuery("INSERT INTO `permiso_usuario VALUES (".$usuario.",101);");
+                $baseDatos->EjecutarQuery("INSERT INTO `permiso_usuario VALUES (".$usuario.",102);");
+                $baseDatos->EjecutarQuery("INSERT INTO `permiso_usuario VALUES (".$usuario.",103);");
+                $baseDatos->EjecutarQuery("INSERT INTO `permiso_usuario VALUES (".$usuario.",401);");
+                $baseDatos->EjecutarQuery("INSERT INTO `permiso_usuario VALUES (".$usuario.",402);");
+                $baseDatos->EjecutarQuery("INSERT INTO `permiso_usuario VALUES (".$usuario.",403);");
+                $baseDatos->EjecutarQuery("INSERT INTO `permiso_usuario VALUES (".$usuario.",500);");
             }
 
             if(isset($_POST['submit'])){ 

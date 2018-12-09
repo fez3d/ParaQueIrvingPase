@@ -20,6 +20,7 @@ and open the template in the editor.
         <?php
         include("BaseDeDatos.php"); 
         //include("ValidacionSesionExpirada.php");
+        session_start();
             function agregarCartelera(){
                 $baseDatos = new BaseDeDatos();
                 $id = $_POST['estacion'];
@@ -44,8 +45,15 @@ and open the template in the editor.
                 agregarCartelera();
                 agregarBitacora();
                 header("Location: VistaAdministrador.php");
-            }  
+            }
             
+            $baseDatos = new BaseDeDatos();
+            $usuario = $_SESSION['usuario'];
+            if($baseDatos->ObtenerResultado("SELECT `usuario`, `permiso` FROM "
+                    . "`permiso_usuario` WHERE usuario = ".$usuario." and "
+                    . "permiso = 102") == null){
+                header("Location: PermisoDenegado.php");
+            }
         ?>
         
         <header class="main-header">   
@@ -82,7 +90,6 @@ and open the template in the editor.
                     <a href="Contacto.php" class="menu__link "> Contacto</a>
                 </li>
                 <?php
-                                session_start();
                                 if($_SESSION['tipo_usuario'] == "administrador"){
                                     echo '<li class="menu__item">';
                                     echo '<a href="VistaAdministrador.php" class="menu__link "> Ver Anuncios</a>';

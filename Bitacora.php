@@ -18,6 +18,14 @@ and open the template in the editor.
         // put your code here
         include("BaseDeDatos.php"); 
         session_start();
+        
+        $baseDatos = new BaseDeDatos();
+            $usuario = $_SESSION['usuario'];
+            if($baseDatos->ObtenerResultado("SELECT `usuario`, `permiso` FROM "
+                    . "`permiso_usuario` WHERE usuario = ".$usuario." and "
+                    . "permiso = 500") == null){
+                header("Location: PermisoDenegado.php");
+            }
         ?>
         <header>
 

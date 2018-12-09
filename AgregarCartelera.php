@@ -104,8 +104,15 @@
                 agregarCartelera();
                 agregarBitacora();
                 header("Location: VistaAdministrador.php");                
-            }  
+            }
             
+            $baseDatos = new BaseDeDatos();
+            $usuario = $_SESSION['usuario'];
+            if($baseDatos->ObtenerResultado("SELECT `usuario`, `permiso` FROM "
+                    . "`permiso_usuario` WHERE usuario = ".$usuario." and "
+                    . "permiso = 101") == null){
+                header("Location: PermisoDenegado.php");
+            }
         ?>
         <header>
 
