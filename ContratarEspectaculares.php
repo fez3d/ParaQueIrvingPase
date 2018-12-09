@@ -61,11 +61,12 @@ and open the template in the editor.
                 header("Location: VistaVerContrataciones.php");
             }  
             
-            $baseDatos = new BaseDeDatos();
-            $usuario = $_SESSION['usuario'];
-            if($baseDatos->ObtenerResultado("SELECT `usuario`, `permiso` FROM "
-                    . "`permiso_usuario` WHERE usuario = ".$usuario." and "
-                    . "permiso = 301") == null){
+            $baseDeDatos = new BaseDeDatos();
+            $usuarioP = $_SESSION['usuario'];
+            $resultP = $baseDeDatos->ObtenerResultado("SELECT `usuario`, `permiso` FROM "
+                    . "`permiso_usuario` WHERE usuario = '".$usuarioP."' and "
+                    . "permiso = 301");
+            if($resultP->num_rows < 1){
                 header("Location: PermisoDenegado.php");
             }
         ?>

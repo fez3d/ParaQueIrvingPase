@@ -1,7 +1,7 @@
 <html lang ="en">
     <head>
         <meta charset="UTF-8">
-        <title>Iniciar Sesion</title>
+        <title>Permiso Denegado</title>
         <link href="estiloIniciarSesion.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="HeaderStyleSheet.css">
         <link rel="stylesheet" href="ServiciosStyleSheet.css">
