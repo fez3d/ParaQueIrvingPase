@@ -7,6 +7,73 @@
         <link href="estiloVentanasAgregar.css" rel="stylesheet" type="text/css"/>
         <link href="HeaderStyleSheet.css" rel="stylesheet" type="text/css"/>
         <script src="contact-form-validation-Cartelera.js"></script>
+        <?php
+           // echo '<script type="text/javascript">',
+            //'localStorageCarga();',
+            //'</script>';
+        ?>
+        <script>
+            function isNotEmptyLocalStorage(){
+                var id = localStorage.getItem("agcID");
+                if(id == "" || id == null){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            
+            function localStorageCarga(){
+                if(isNotEmptyLocalStorage()){
+                    var id = localStorage.getItem("agcID");
+                    var direccion = localStorage.getItem("agcDireccion");
+                    var titulo = localStorage.getItem("agcTitulo");
+                    var precio = localStorage.getItem("agcPrecio");
+                    
+                    document.getElementsByName("id").value = id;
+                    document.getElementsByName("direccion").value = direccion;
+                    document.getElementsByName("titulo").value = titulo;
+                    document.getElementsByName("precio").value = precio;
+                    
+                    localStorage.removeItem("agcID");
+                    localStorage.removeItem("agcDireccion");
+                    localStorage.removeItem("agcTitulo");
+                    localStorage.removeItem("agcPrecio");
+                    alert("penneeeeeee");
+                    
+                }else{
+
+                }
+            }
+            
+            function localStorageSubmit(){
+                alert("penneeeeeeeEstaEntrando");
+                if(isNotEmptyLocalStorage()){                   
+                    alert("penneeeeeeeNovacio");
+                }else{
+                    if(!navigator.onLine){
+                       var id =  document.getElementsByName("id");
+                       var direccion =  document.getElementsByName("direccion");
+                       var titulo =  document.getElementsByName("titulo");
+                       var precio =  document.getElementsByName("precio");
+                       
+                       localStorage.setItem("agcID", id);
+                       localStorage.setItem("agcDireccion", direccion);
+                       localStorage.setItem("agcTitulo", titulo);
+                       localStorage.setItem("agcPrecio", precio);
+                       alert("penneeeeeee222");
+                    } else {
+                        alert("penneeeeeeeNoseque");
+                    }
+                }
+            }
+            
+            function submit(){
+                window.alert("submitemeesta");
+                localStorageSubmit();
+                validateForm();
+                
+            }
+        </script>
     </head>
     <body>
         <?php
@@ -36,7 +103,7 @@
 //                validarSesionExpirada();
                 agregarCartelera();
                 agregarBitacora();
-                header("Location: VistaAdministrador.php");
+                header("Location: VistaAdministrador.php");                
             }  
             
         ?>
@@ -131,7 +198,7 @@
                     <input type="text"  name="precio" placeholder="ingrese el precio">
                     <br><br>
                      
-                    <input type="submit" name="submit" value="Registrar Datos" onclick="validateForm()">               
+                    <input type="submit" name="submit" value="Registrar Datos" onclick="submit()">               
                 </form>
             </div>
         

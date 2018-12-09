@@ -13,7 +13,6 @@
                 die("Connection failed: " . $conn->connect_error);
             } 
             if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
             } else {
                 $error = $conn->error;
                 error_log($error);
