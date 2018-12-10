@@ -46,7 +46,7 @@ and open the template in the editor.
             
             function localStorageSubmit(){
                 if(isNotEmptyLocalStorage()){
-                    alert("LocalStorage no vacío");
+                    
                 }else{
                     if(!navigator.onLine){
                        var id =  document.getElementsByName("canal")[0].value;
@@ -56,10 +56,6 @@ and open the template in the editor.
                        localStorage.setItem("agtCanal", id);
                        localStorage.setItem("agtTitulo", titulo);
                        localStorage.setItem("agtPrecio", precio);
-                       
-                       alert("Se guardó id: " + id);
-                    }else{
-                        alert("No se guardó nada.");
                     }
                 }
             }

@@ -59,8 +59,6 @@
                        localStorage.setItem("agcDireccion", direccion);
                        localStorage.setItem("agcTitulo", titulo);
                        localStorage.setItem("agcPrecio", precio);                      
-                    } else {
-                        alert("No se guardó nada.");
                     }
                 }
             }

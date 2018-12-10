@@ -5,11 +5,52 @@
         <!--<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">-->
         <!--<link href="NavbarCss.css" rel="stylesheet" type="text/css"/>-->
         <link rel="stylesheet" href="HeaderStyleSheet.css">
-    <link rel="stylesheet" href="ServiciosStyleSheet.css">
-    <link rel="stylesheet" href="SliderStyleSheet.css">
+        <link rel="stylesheet" href="ServiciosStyleSheet.css">
+        <link rel="stylesheet" href="SliderStyleSheet.css">
         <title>Cancelar Radio</title>
+    <script>
+            function isNotEmptyLocalStorage(){
+                var id = localStorage.getItem("carClave");
+                if(id == "" || id == null){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            
+            function localStorageCarga(){
+                if(isNotEmptyLocalStorage()){
+                    alert("Se recuperó información de la última sesión.");
+                    
+                    var id = localStorage.getItem("carClave");
+                    
+                    document.getElementsByName("clave")[0].value = id;
+                    
+                    localStorage.removeItem("carClave");
+                }
+            }
+            
+            function localStorageSubmit(){
+                if(isNotEmptyLocalStorage()){
+                    //alert("LocalStorage no vacío");
+                }else{
+                    if(!navigator.onLine){
+                       var id =  document.getElementsByName("clave")[0].value;
+                       
+                       localStorage.setItem("carClave", id);
+                       //alert("Se guardó id: " + id);
+                    }
+                }
+            }
+            
+            function submitF(){
+                localStorageSubmit();
+                validateForm();
+                
+            }
+        </script>
     </head>
-    <body>
+    <body onload="localStorageCarga()">
         <?php
         // put your code here
         session_start();
@@ -121,7 +162,7 @@
         <form method="post">
             
             <input type="text" name="clave" required="" placeholder="Ingresar Numero Contrato Radio">
-            <input type="submit" name="submit" value="eliminar">
+            <input type="submit" name="submit" value="eliminar" onclick="submitF()">
         </form>
         </div>
     </body>

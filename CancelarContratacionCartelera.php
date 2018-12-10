@@ -8,8 +8,49 @@
     <link rel="stylesheet" href="ServiciosStyleSheet.css">
     <link rel="stylesheet" href="SliderStyleSheet.css">
         <title>Cancelar Cartelera</title>
+        <script>
+            function isNotEmptyLocalStorage(){
+                var id = localStorage.getItem("cacClave");
+                if(id == "" || id == null){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            
+            function localStorageCarga(){
+                if(isNotEmptyLocalStorage()){
+                    alert("Se recuperó información de la última sesión.");
+                    
+                    var id = localStorage.getItem("cacClave");
+                    
+                    document.getElementsByName("clave")[0].value = id;
+                    
+                    localStorage.removeItem("cacClave");
+                }
+            }
+            
+            function localStorageSubmit(){
+                if(isNotEmptyLocalStorage()){
+                    //alert("LocalStorage no vacío");
+                }else{
+                    if(!navigator.onLine){
+                       var id =  document.getElementsByName("clave")[0].value;
+                       
+                       localStorage.setItem("cacClave", id);
+                       //alert("Se guardó id: " + id);
+                    }
+                }
+            }
+            
+            function submitF(){
+                localStorageSubmit();
+                validateForm();
+                
+            }
+        </script>
     </head>
-    <body>
+    <body onload="localStorageCarga()">
         <?php
         // put your code here
         session_start();
@@ -119,7 +160,7 @@
             
             
             <input type="text" name="clave" required="" placeholder="Ingresa el numero de la Cartelera">
-            <input type="submit" name="submit" value="eliminar">
+            <input type="submit" name="submit" value="eliminar" onclick="submitF()">
         </form>
         </div>
     </body>

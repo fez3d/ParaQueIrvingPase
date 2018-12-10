@@ -10,7 +10,48 @@
         <link href="https://file.myfontastic.com/qp8yPnhRsVhXCzhpKiRbnF/icons.css" rel="stylesheet">
         <title></title>
     </head>
-    <body>
+    <script>
+            function isNotEmptyLocalStorage(){
+                var id = localStorage.getItem("elcClave");
+                if(id == "" || id == null){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            
+            function localStorageCarga(){
+                if(isNotEmptyLocalStorage()){
+                    alert("Se recuperó información de la última sesión.");
+                    
+                    var id = localStorage.getItem("elcClave");
+                    
+                    document.getElementsByName("clave")[0].value = id;
+                    
+                    localStorage.removeItem("elcClave");
+                }
+            }
+            
+            function localStorageSubmit(){
+                if(isNotEmptyLocalStorage()){
+                    //alert("LocalStorage no vacío");
+                }else{
+                    if(!navigator.onLine){
+                       var id =  document.getElementsByName("clave")[0].value;
+                       
+                       localStorage.setItem("elcClave", id);
+                       //alert("Se guardó id: " + id);
+                    }
+                }
+            }
+            
+            function submitF(){
+                localStorageSubmit();
+                validateForm();
+                
+            }
+        </script>
+        <body onload="localStorageCarga()">
         <?php
         // put your code here
         include("BaseDeDatos.php");
@@ -114,7 +155,7 @@
         <form method="post">
             
             <input type="text" name="clave" required="" placeholder="Ingrese la cartelera">
-            <input type="submit" name="submit" value="eliminar">
+            <input type="submit" name="submit" value="eliminar" onclick="submitF()">
         </form>
         </div>
     </body>

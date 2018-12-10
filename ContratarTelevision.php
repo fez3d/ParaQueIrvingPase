@@ -13,17 +13,90 @@ and open the template in the editor.
         <link rel="stylesheet" href="ContratarStyleSheet.css">
         <link href="https://file.myfontastic.com/qp8yPnhRsVhXCzhpKiRbnF/icons.css" rel="stylesheet">
         <script src="contact-form-validation.js"></script>
+        <?php
+            session_start();
+            include("BaseDeDatos.php");
+            $baseDeDatos = new BaseDeDatos();
+            $usuarioP = $_SESSION['usuario'];
+            $resultP = $baseDeDatos->ObtenerResultado("SELECT `usuario`, `permiso` FROM "
+                    . "`permiso_usuario` WHERE usuario = '".$usuarioP."' and "
+                    . "permiso = 303");
+            if($resultP->num_rows < 1){
+                header("Location: PermisoDenegado.php");
+            }
+        ?>
         <script>
             function getText(element) {
             var textHolder = element.options[element.selectedIndex].text
             document.getElementById("txt_holder").value = textHolder;
             }
+            function isNotEmptyLocalStorage(){
+                var id = localStorage.getItem("cotDiaInicio");
+                if(id == "" || id == null){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            
+            function localStorageCarga(){
+                if(isNotEmptyLocalStorage()){
+                    alert("Se recuperó información de la última sesión.");
+                    
+                    var diaInicio = localStorage.getItem("cotDiaInicio");
+                    var mesInicio = localStorage.getItem("cotMesInicio");
+                    var anoInicio = localStorage.getItem("cotAnoInicio");
+                    var diaTermino = localStorage.getItem("cotDiaTermino");
+                    var mesTermino = localStorage.getItem("cotMesTermino");
+                    var anoTermino = localStorage.getItem("cotAnoTermino");
+                    
+                    document.getElementsByName("diaInicio")[0].value = diaInicio;
+                    document.getElementsByName("mesInicio")[0].value = mesInicio;
+                    document.getElementsByName("anoInicio")[0].value = anoInicio;
+                    document.getElementsByName("diaTermino")[0].value = diaTermino;
+                    document.getElementsByName("mesTermino")[0].value = mesTermino;
+                    document.getElementsByName("anoTermino")[0].value = anoTermino;
+                    
+                    localStorage.removeItem("cotDiaInicio");
+                    localStorage.removeItem("cotMesInicio");
+                    localStorage.removeItem("cotAnoInicio");
+                    localStorage.removeItem("cotDiaTermino");
+                    localStorage.removeItem("cotMesTermino");
+                    localStorage.removeItem("cotAnoTermino");
+                }
+            }
+            
+            function localStorageSubmit(){
+                if(isNotEmptyLocalStorage()){
+                    
+                }else{
+                    if(!navigator.onLine){
+                       var diaInicio =  document.getElementsByName("diaInicio")[0].value;
+                       var mesInicio =  document.getElementsByName("mesInicio")[0].value;
+                       var anoInicio =  document.getElementsByName("anoInicio")[0].value;
+                       var diaTermino =  document.getElementsByName("diaTermino")[0].value;
+                       var mesTermino =  document.getElementsByName("mesTermino")[0].value;
+                       var anoTermino =  document.getElementsByName("anoTermino")[0].value;
+                       
+                       localStorage.setItem("cotDiaInicio", diaInicio);
+                       localStorage.setItem("cotMesInicio", mesInicio);
+                       localStorage.setItem("cotAnoInicio", anoInicio);
+                       localStorage.setItem("cotDiaTermino", diaTermino);
+                       localStorage.setItem("cotMesTermino", mesTermino);
+                       localStorage.setItem("cotAnoTermino", anoTermino);
+                    }
+                }
+            }
+            
+            function submitF(){
+                localStorageSubmit();
+                validateForm();
+                
+            }
         </script>
     </head>
-<body>
+    <body onload="localStorageCarga()">
     <?php
-        session_start();
-        include("BaseDeDatos.php"); 
             function agregarRadio(){
                 $baseDatos = new BaseDeDatos();
                 $canal = $_POST['txt_holder'];
@@ -58,16 +131,7 @@ and open the template in the editor.
             if(isset($_POST['submit'])){ 
                 agregarRadio();
                 agregarBitacora();
-                header("Location: VistaVerContrataciones.php");
-            }
-            
-            $baseDeDatos = new BaseDeDatos();
-            $usuarioP = $_SESSION['usuario'];
-            $resultP = $baseDeDatos->ObtenerResultado("SELECT `usuario`, `permiso` FROM "
-                    . "`permiso_usuario` WHERE usuario = '".$usuarioP."' and "
-                    . "permiso = 303");
-            if($resultP->num_rows < 1){
-                header("Location: PermisoDenegado.php");
+                echo "<script>window.location = 'VistaVerContrataciones.php'</script>";
             }
         ?>
     
@@ -181,7 +245,7 @@ and open the template in the editor.
                         <input type="hidden" name="txt_holder" id="txt_holder">
                         <br><br>
 
-                        <input type="submit" value="Aceptar" name="submit">
+                        <input type="submit" value="Aceptar" name="submit" onclick="submitF()">
                     </form>   
                 </div>
             </div>
